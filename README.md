@@ -1,98 +1,40 @@
-```
-::::    ::::  :::   :::              ::::    ::::  :::::::::                ::::::::: :::::::::::     :::     :::::::::  :::   ::: 
-+:+:+: :+:+:+ :+:   :+:              +:+:+: :+:+:+ :+:    :+:               :+:    :+:    :+:       :+: :+:   :+:    :+: :+:   :+: 
-+:+ +:+:+ +:+  +:+ +:+               +:+ +:+:+ +:+ +:+    +:+               +:+    +:+    +:+      +:+   +:+  +:+    +:+  +:+ +:+  
-+#+  +:+  +#+   +#++:  +#++:++#++:++ +#+  +:+  +#+ +#+    +:+ +#++:++#++:++ +#+    +:+    +#+     +#++:++#++: +#++:++#:    +#++:   
-+#+       +#+    +#+                 +#+       +#+ +#+    +#+               +#+    +#+    +#+     +#+     +#+ +#+    +#+    +#+    
-#+#       #+#    #+#                 #+#       #+# #+#    #+#               #+#    #+#    #+#     #+#     #+# #+#    #+#    #+#    
-###       ###    ###                 ###       ### #########                ######### ########### ###     ### ###    ###    ###     
-```
-
-*Un journal Markdown nomade, chiffré et poétique.*
-
-
 # My MD Diary
 
-**My MD Diary** est un journal personnel en ligne de commande, local, sécurisé et poétique.  
-Il utilise le format Markdown pour une compatibilité maximale et une simplicité de lecture.
+Un journal Markdown nomade, chiffré et poétique — en une simple ligne de commande.
 
 ---
 
-## ✨ Fonctionnalités
+## 🌱 Pourquoi ?
 
-- Écriture libre et multi-ligne (Ctrl+D pour valider)
-- Tagging, mise en favoris
-- Chiffrement / déchiffrement des notes
-- Recherche, stats, export (.txt, .html, .json)
-- Correction automatique des apostrophes typographiques
-- Synchronisation Git (si configuré)
-- Compatible Termux / Linux / WSL
-- Système de fichiers intelligent (détection WSL vs Linux natif)
+Pour écrire sans distraction.  
+Pour stocker localement.  
+Pour chiffrer ses pensées.  
+Pour explorer ses propres mots.
 
 ---
 
-## ⚙️ Installation
+## 🐚 Fonctionne avec :
 
-1. Cloner ou copier le script `my-md-diary.sh`
-2. Rendre exécutable :
-   ```bash
-   chmod +x my-md-diary.sh
-   ```
-3. Lancer simplement :
-   ```bash
-   ./my-md-diary.sh
-   ```
+- Bash (Linux, WSL, Termux…)
+- Markdown `.md`
+- GnuPG (chiffrement)
+- Git (synchronisation)
 
 ---
 
-## ✅ Aide rapide
+## 📘 Documentation
 
-```bash
-./my-md-diary.sh                    Mode libre (multi-ligne, Ctrl+D)
--e, --edit                          Ouvrir le journal du jour
--t, --tag "texte" tag               Ajouter une note taggée
--s, --star fichier.md               Marquer une note comme favori (_fav.md)
--E, --encrypt "texte"               Ajouter une note chiffrée (_secret.gpg)
--D, --decrypt                       Lire une note chiffrée
--d, --delete fichier.md             Supprimer une note journalière
--v, --view                          Lire une note par date
--f, --search                        Rechercher une expression
--r, --random                        Lire une note aléatoire
--a, --stats                         Voir les statistiques
--x, --export                        Exporter les notes
--l, --lint                          Corriger les apostrophes
--y, --sync                          Synchroniser via Git
--h, --help                          Afficher l’aide
-```
+Toutes les commandes, explications et astuces sont disponibles dans le **Wiki** :
+
+👉 [Voir le Wiki GitHub](https://github.com/Tu0m1n/my-md-diary/wiki)
 
 ---
 
-## 🧪 Dépendances
+## ⚖️ Licence
 
-- `gpg`, `jq`, `pandoc`, `git` (installés automatiquement si manquants)
-
----
-
-## 🌍 Structure des fichiers
-
-Tous les fichiers sont enregistrés dans un seul dossier :
-
-- `~/documents/notes/` (Linux)
-- `/mnt/c/Users/.../Documents/notes/` (WSL)
-
-Ce répertoire contient :
-- les notes journalières : `YYYY-MM-DD.md`
-- les notes chiffrées : `YYYY-MM-DD_HHMM_secret.gpg`
-- les favoris : copies nommées `XXX_fav.md`
+[GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ---
 
-## ⚠️ Git & Sécurité
+> Un script pour écrire. Une trace pour vivre.
 
-Le script vérifie que le répertoire est bien un dépôt Git avant toute tentative de synchronisation.
-
----
-
-## 🐇 Auteur
-
-Un ninja poète du Markdown et des terminaux nomades.
