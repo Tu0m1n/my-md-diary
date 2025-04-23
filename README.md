@@ -1,3 +1,16 @@
+```
+::::    ::::  :::   :::              ::::    ::::  :::::::::                ::::::::: :::::::::::     :::     :::::::::  :::   ::: 
++:+:+: :+:+:+ :+:   :+:              +:+:+: :+:+:+ :+:    :+:               :+:    :+:    :+:       :+: :+:   :+:    :+: :+:   :+: 
++:+ +:+:+ +:+  +:+ +:+               +:+ +:+:+ +:+ +:+    +:+               +:+    +:+    +:+      +:+   +:+  +:+    +:+  +:+ +:+  
++#+  +:+  +#+   +#++:  +#++:++#++:++ +#+  +:+  +#+ +#+    +:+ +#++:++#++:++ +#+    +:+    +#+     +#++:++#++: +#++:++#:    +#++:   
++#+       +#+    +#+                 +#+       +#+ +#+    +#+               +#+    +#+    +#+     +#+     +#+ +#+    +#+    +#+    
+#+#       #+#    #+#                 #+#       #+# #+#    #+#               #+#    #+#    #+#     #+#     #+# #+#    #+#    #+#    
+###       ###    ###                 ###       ### #########                ######### ########### ###     ### ###    ###    ###     
+```
+
+*Un journal Markdown nomade, chiffré et poétique.*
+
+
 # My MD Diary
 
 **My MD Diary** est un journal personnel en ligne de commande, local, sécurisé et poétique.  
@@ -38,8 +51,8 @@ Il utilise le format Markdown pour une compatibilité maximale et une simplicit�
 ./my-md-diary.sh                    Mode libre (multi-ligne, Ctrl+D)
 -e, --edit                          Ouvrir le journal du jour
 -t, --tag "texte" tag               Ajouter une note taggée
--s, --star fichier.md               Ajouter aux favoris
--E, --encrypt "texte"               Ajouter une note chiffrée
+-s, --star fichier.md               Marquer une note comme favori (_fav.md)
+-E, --encrypt "texte"               Ajouter une note chiffrée (_secret.gpg)
 -D, --decrypt                       Lire une note chiffrée
 -d, --delete fichier.md             Supprimer une note journalière
 -v, --view                          Lire une note par date
@@ -71,8 +84,6 @@ Ce répertoire contient :
 - les notes journalières : `YYYY-MM-DD.md`
 - les notes chiffrées : `YYYY-MM-DD_HHMM_secret.gpg`
 - les favoris : copies nommées `XXX_fav.md`
-
-
 
 ---
 
