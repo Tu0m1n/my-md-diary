@@ -1,0 +1,14 @@
+# Fichiers de notes chiffrées
+*.gpg
+
+# Exports temporaires
+export.*
+
+# Logs éventuels
+*.log
+
+# Fichiers système macOS
+.DS_Store
+
+# Sauvegardes ou fichiers édités temporairement
+*~
