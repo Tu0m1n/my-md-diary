@@ -67,15 +67,28 @@ open_editor() {
 encrypt_note() {
   texte=$(corriger_apostrophes "$1")
   filename="$JOURNAL_DIR/${DATE}_$(date +%H%M)_secret.gpg"
-  echo "$texte" | gpg --batch --yes --symmetric --cipher-algo AES256 -o "$filename"
+echo "$texte" | gpg --symmetric --pinentry-mode loopback --cipher-algo AES256 -o "$filename"
   echo -e "${GRN}Note chiffrée enregistrée dans : $filename${RST}"
 }
 
 decrypt_note() {
+  echo -e "${GRN}Fichiers disponibles :${RST}"
+  ls "$JOURNAL_DIR"/*_secret.gpg 2>/dev/null | xargs -n1 basename
+
+  echo ""
   read -p "Nom du fichier (sans .gpg) : " filebase
-  fichier="$JOURNAL_DIR/$filebase_secret.gpg"
+
+  if [ -z "$filebase" ]; then
+    echo -e "${RED}Erreur : nom de fichier vide.${RST}"
+    return 1
+  fi
+
+  fichier="$JOURNAL_DIR/$filebase.gpg"
+  echo -e "${BLU}→ Fichier recherché : $fichier${RST}"
+
   if [ -f "$fichier" ]; then
-    gpg -d "$fichier"
+    echo -e "${GRN}Déchiffrement...${RST}"
+    gpg --pinentry-mode loopback -d "$fichier"
   else
     echo -e "${RED}Fichier introuvable : $fichier${RST}"
   fi
@@ -211,8 +224,8 @@ case $1 in
     echo -e "${BLD}Journal Nomade — Aide rapide${RST}\n"
     echo "  ./journal.sh                    Mode libre : écrire une note (fin par Ctrl+D)"
     echo "  -e, --edit                      Ouvrir le journal du jour"
-    echo "  -t, --tag "texte" tag            Ajouter une note taggée"
-    echo "  -s, --star fichier.md             Marquer une note comme favori (_fav.md)           Ajouter un fichier aux favoris"
+    echo "  -t, --tag "texte" tag             Ajouter une note taggée"
+    echo "  -s, --star fichier.md           Marquer une note comme favori (_fav.md)           Ajouter un fichier aux favoris"
     echo "  -E, --encrypt "texte"             Ajouter une note chiffrée (_secret.gpg)           Ajouter une note chiffrée"
     echo "  -D, --decrypt                   Déchiffrer une note chiffrée"
     echo "  -d, --delete fichier.md         Supprimer une note journalière (.md)"
