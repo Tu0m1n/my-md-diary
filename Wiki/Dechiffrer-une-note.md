@@ -1,63 +1,58 @@
-# 🔓 Déchiffrer une note
+# Déchiffrer une note (`--decrypt`)
 
-Tu as créé une note chiffrée avec `--secure` ou `-c` ?  
-Voici comment la retrouver et la lire, en toute sécurité.
+La commande `--decrypt` ou `-D` permet d'afficher le contenu d’un fichier chiffré créé via `--encrypt`.
 
----
-
-## 🛠️ Commande
+Elle vous affiche d’abord la liste des fichiers `.md.gpg` disponibles, puis vous invite à entrer le nom du fichier à ouvrir.
 
 ```bash
-./my-md-diary.sh --decrypt
+./mmdd.sh -D
 ```
 
-ou plus court :
+Vous devrez saisir le **nom du fichier sans extension** `.gpg`. Par exemple :
+```bash
+2025-04-24_secret.md
+```
+
+---
+
+## 🔐 Passphrase automatique ou interactive
+
+Deux cas possibles :
+
+### 1. Passphrase automatique
+Si vous avez défini `PASSPHRASE` dans `.mmddrc`, le fichier est déchiffré directement, sans interaction.
+
+### 2. Saisie manuelle
+Si la passphrase n’est pas définie, le script vous demandera une passphrase temporaire de manière sécurisée :
+```bash
+🔐 Entrez la passphrase de déchiffrement :
+```
+
+---
+
+## 📄 Contenu affiché
+
+Le fichier `.md.gpg` contient **toutes les notes chiffrées du jour**, fusionnées dans le même fichier. Le contenu affiché est complet :
+
+```markdown
+# Journal du 2025-04-24
+
+## 21h10
+Mot de passe Wi-Fi de Mamie
+
+## 22h15
+ID de connexion bancaire
+```
+
+---
+
+## ✅ Exemple
 
 ```bash
-./my-md-diary.sh -D
+./mmdd.sh -D
+# → Entrez : 2025-04-24_secret.md
 ```
 
----
+> Le script utilise `gpg` avec `--pinentry-mode loopback` pour permettre une exécution en mode ligne de commande uniquement, sans interface graphique.
 
-## 🔍 Sélection du fichier
-
-Tu seras invité à entrer le **nom de la note chiffrée**, sans l’extension `.gpg`.
-
-Par exemple :
-
-```
-Nom du fichier (sans .gpg) : 2025-04-23_1834_secret
-```
-
-Le script va chercher ce fichier dans ton répertoire de notes.
-
----
-
-## 🔐 GPG entre en jeu
-
-Si ta clé privée correspond bien à celle utilisée pour chiffrer, GPG déchiffrera la note.
-
-Tu verras alors son contenu affiché dans le terminal.
-
-> Si ta phrase de passe est requise, GPG te la demandera.
-
----
-
-## ⚠️ En cas d'erreur
-
-- Vérifie que le fichier `.gpg` existe bien dans `~/documents/notes/`
-- Assure-toi que ta **clé GPG** est bien présente dans `gpg --list-keys`
-- Le nom demandé ne doit pas contenir `.gpg` à la fin
-
----
-
-## 🧠 Remarque
-
-Le script n’ouvre pas le fichier dans un éditeur,  
-il le déchiffre simplement **en lecture seule**, dans ton terminal.
-
----
-
-Déchiffrer, ce n’est pas briser un secret.  
-C’est lui demander doucement s’il veut bien parler.
 

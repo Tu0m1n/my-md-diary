@@ -1,62 +1,61 @@
-# 🗑️ Supprimer une note
+# Supprimer une note (`--delete`)
 
-Parfois, une note n’a plus lieu d’être.  
-Que ce soit une erreur, un test, ou une pensée que l’on souhaite effacer, My MD Diary permet une suppression simple et ciblée.
-
----
-
-## 🚨 Attention
-
-Cette action est **irréversible**.  
-La note est **supprimée du système de fichiers**.
+La commande `--delete` ou `-d` permet de supprimer un fichier de note (.md ou .md.gpg) **de manière sécurisée**, avec une confirmation interactive.
 
 ---
 
-## 🛠️ Commande
+## ✋ Sécurité par défaut
+
+Aucune note n’est supprimée directement.
+Vous devez confirmer la suppression via une question :
 
 ```bash
-./my-md-diary.sh --delete nom_du_fichier.md
+⚠️ Supprimer 2025-04-24.md ? [y/N]
 ```
 
-ou version courte :
+> Si vous tapez `y` ou `Y`, le fichier est effacé.
+> Toute autre réponse annule l’opération.
+
+---
+
+## 📅 Journal du jour : comportement protégé
+
+Si vous tentez de supprimer la note du jour (fichier `YYYY-MM-DD.md` pour la date du jour), **le fichier ne sera pas supprimé**, mais simplement vidé.
+
+Exemple de résultat :
 
 ```bash
-./my-md-diary.sh -d nom_du_fichier.md
+# Journal du 2025-04-24
 ```
+
+Cela évite la recréation automatique du fichier par le script.
 
 ---
 
-## 🔎 Exemple
+## 🔐 Fichiers verrouillés
+
+Si le fichier est ouvert dans un éditeur (ex: Zettlr), le script affichera un message :
 
 ```bash
-./my-md-diary.sh -d 2025-04-23.md
+⚠️ Le fichier semble verrouillé ou en lecture seule.
+Fermez-le dans votre éditeur puis réessayez.
 ```
 
-Supprimera le fichier `2025-04-23.md` de ton répertoire `~/documents/notes/`.
+---
+
+## ✅ Utilisation
+
+```bash
+./mmdd.sh -d 2025-04-24.md
+./mmdd.sh -d 2025-04-24_secret.md.gpg
+```
 
 ---
 
-## ❓ Que peut-on supprimer ?
+## 📌 Limites
 
-- Une note journalière (`YYYY-MM-DD.md`)
-- Un favori (`*_fav.md`)
-- Une note chiffrée (`*_secret.gpg`)  
-  *(attention à bien préciser l’extension)*
+- Ne supprime qu’un fichier à la fois
+- Ne gère pas encore les suppressions multiples ou en lot
+- Fonctionne avec tous les fichiers supportés : `.md`, `.md.gpg`, `_fav.md`, etc.
 
----
-
-## 🔐 Et les notes chiffrées ?
-
-Tu peux les supprimer **comme n’importe quel fichier**, à condition de connaître leur nom exact.
-
----
-
-## 💡 Conseil
-
-Fais une sauvegarde Git régulière pour pouvoir revenir en arrière en cas de suppression accidentelle.
-
----
-
-Effacer, ce n’est pas nier.  
-C’est faire de la place pour un silence nouveau.
 

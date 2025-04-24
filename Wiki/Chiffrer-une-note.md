@@ -1,74 +1,72 @@
-# 🔐 Chiffrer une note
+# Chiffrer une note (`--encrypt`)
 
-Certaines pensées sont plus sensibles.  
-Pour ces cas-là, **My MD Diary** permet d’ajouter une note **chiffrée**, lisible uniquement avec ta clé GPG.
+La commande `--encrypt` ou `-E` permet de chiffrer une note directement depuis le terminal.
+
+Chaque note chiffrée est ajoutée à un fichier unique pour la journée :
+
+```
+YYYY-MM-DD_secret.md.gpg
+```
+
+Ce fichier est automatiquement **fusionné** à chaque nouvelle note chiffrée du même jour.
 
 ---
 
-## 🔧 Prérequis
+## 🔐 Deux modes de chiffrement
 
-- Avoir **GnuPG** installé (`gpg`)
-- Avoir une **clé GPG** déjà créée (locale)
+### 1. **Passphrase prédéfinie**
 
----
-
-## 🚀 Commande rapide
+Si vous avez défini `PASSPHRASE` dans votre `.mmddrc`, la note sera automatiquement chiffrée sans interaction :
 
 ```bash
-./my-md-diary.sh --secure "Ma pensée secrète du jour..."
+PASSPHRASE="motdepasse"  # dans .mmddrc
 ```
-
-ou avec l’alias court :
 
 ```bash
-./my-md-diary.sh -c "Texte confidentiel"
+./mmdd.sh -E "Texte secret"
 ```
 
----
+### 2. **Saisie manuelle (interactif)**
 
-## 📦 Résultat
-
-- Une note est chiffrée immédiatement avec ta clé publique locale
-- Le fichier est enregistré avec un nom horodaté, par exemple :
+Si aucune passphrase n’est définie, le script vous demandera d’en entrer une directement dans le terminal :
 
 ```bash
-2025-04-23_1834_secret.gpg
-```
-
-> Le chiffrement se fait en local, **sans réseau**, et reste accessible uniquement via `gpg`.
-
----
-
-## 📁 Où sont stockées les notes chiffrées ?
-
-Dans le même répertoire que les autres :
-
-```
-~/documents/notes/
+./mmdd.sh -E "Note temporaire protégée"
+🔐 Entrez une passphrase temporaire pour cette note :
 ```
 
 ---
 
-## 🔐 Déchiffrer une note
+## 🧠 Fusion automatique
 
-Utilise :
+Toutes les notes chiffrées d’un même jour sont fusionnées dans un seul fichier :
 
 ```bash
-./my-md-diary.sh --decrypt
+## 21h10
+Mot de passe Wi-Fi de Mamie
+
+## 22h15
+ID de connexion bancaire
 ```
 
-Tu seras invité à choisir un fichier `.gpg`, et GPG te demandera la phrase de passe si nécessaire.
+---
+
+## ✅ Exemple
+
+```bash
+./mmdd.sh -E "Première note secrète"
+./mmdd.sh -E "Deuxième pensée cachée"
+```
 
 ---
 
-## 🧘‍♂️ Pour un usage sain
+## 📌 Résumé
 
-Ces notes sont vraiment chiffrées.  
-Assure-toi de **sauvegarder ta clé GPG** si tu veux y accéder à long terme.  
-Sinon, elles sont perdues à jamais.
+- Le fichier chiffré est créé automatiquement s’il n’existe pas
+- Il est fusionné à chaque nouvelle note via `gpg`
+- Vous pouvez choisir entre une passphrase automatique (config) ou une saisie à la volée
+- Les fichiers sont stockés dans : `$JOURNAL_DIR/YYYY-MM-DD_secret.md.gpg`
 
----
+> Vous pouvez déchiffrer ce fichier plus tard avec `--decrypt`.
 
-Le secret n’est pas une barrière,  
-C’est un écrin.
 

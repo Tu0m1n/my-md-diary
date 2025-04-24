@@ -1,0 +1,22 @@
+# === Configuration de My Markdown Diary (mmdd.sh) ===
+
+# Répertoire des notes (sera ignoré si WSL détecté et variable absente)
+# JOURNAL_DIR="$HOME/documents/notes"
+
+# Éditeur préféré (vim, nano, code, zettlr…)
+DIARY_EDITOR="vim"
+
+# Passphrase pour chiffrer/déchiffrer (optionnel mais utile pour automatiser)
+PASSPHRASE=""
+
+# Suffixes personnalisables (optionnel)
+# FAV_SUFFIX="_fav.md"
+# SECRET_SUFFIX="_secret.gpg"
+
+# Mode de chiffrement fusionné (non utilisé ici, mais prêt pour v2)
+# SECURE_MODE="md"
+
+# Configuration Git (si journal est versionné)
+# GIT_USER_NAME="Tu0m1n"
+# GIT_USER_EMAIL="tu0min@example.com"
+
